@@ -8,3 +8,4 @@ from Object.Object import Object
 
 class RigidBody(Object):
     pass
+    
