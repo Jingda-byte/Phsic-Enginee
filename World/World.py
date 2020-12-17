@@ -17,6 +17,10 @@ class World():
         self.__size=size 
         self.__objects=[]
         self.__gravity=gravity
+    
+    def refresh(self,obj):
+        obj.gravity(self.__gravity)
+        obj.refresh()
         
     def show(self):
         plt.ion()
@@ -24,8 +28,7 @@ class World():
         while frame < self.__time*self.__FPS:
             plt.clf()
             for obj in self.__objects:
-                obj.gravity(self.__gravity/self.__FPS)
-                obj.refresh()
+                self.refresh(obj)
                 position=obj.position
                 plt.scatter(position[0],position[1])
             plt.axis([-self.__size[0],self.__size[0],-self.__size[1],self.__size[1]])
@@ -36,5 +39,6 @@ class World():
     
     
     def add_object(self,obj:Object):
+        obj.frequence=1/self.__FPS
         self.__objects.append(obj)
         
